@@ -28,6 +28,10 @@ body {
   float: right;
   margin-right: 10px;
 }
+.fa {
+  height: 20px;
+  margin-right: 10px;
+}
 #header a:hover {
   background-color: lightgray;
   cursor: pointer;
