@@ -7,7 +7,7 @@ body {
 }
 #pageTitle {
   color: wheat;
-  margin: 0 150px 0 20px;
+  margin: 0 300px 0 20px;
 }
 #header {
   width: 100%;
@@ -25,11 +25,6 @@ body {
 #iti_logo {
   height: 100%;
   width: 30px;
-  float: right;
-  margin-right: 10px;
-}
-.fa {
-  height: 20px;
   margin-right: 10px;
 }
 #header a:hover {
@@ -40,6 +35,10 @@ body {
 #header a {
   color: white;
   text-decoration: none;
+}
+.fa {
+  height: 20px;
+  margin-right: 10px;
 }
 #leftPanel {
   width: 15%;
@@ -70,6 +69,7 @@ body {
   width: 85%;
   height: 414px;
   float: left;
+  position: relative;
 }
 #popup {
   background-color: rgba(54, 47, 47, 0.805);
@@ -102,7 +102,7 @@ body {
 }
 #whichLayer {
   position: absolute;
-  left: 16%;
+  left: 8px;
   z-index: 1;
   width: 200px;
   background-color: #0f0c0c;
@@ -180,6 +180,10 @@ body {
   color: rgba(202, 54, 54, 0.805);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.countryDeath,
+.countryRecovered {
+  font-size: smaller;
+}
 #rec,
 #death,
 #confirm {
@@ -208,4 +212,66 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+.my-legend .legend-title {
+  text-align: left;
+  margin-bottom: 5px;
+
+  color: rgba(128, 118, 118, 0.805);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: x-small;
+}
+.my-legend .legend-scale ul {
+  margin: 5px;
+  margin-bottom: 5px;
+  padding: 0;
+  float: left;
+  list-style: none;
+}
+.my-legend .legend-scale ul li {
+  font-size: 80%;
+  list-style: none;
+  margin-left: 0;
+  line-height: 18px;
+  margin-bottom: 2px;
+  color: aliceblue;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.my-legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 16px;
+  width: 20px;
+  margin-right: 20px;
+  margin-left: 0;
+  border: 1px solid rgb(243, 228, 228);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#legend {
+  z-index: 11;
+  padding: 4px 8px;
+  border: 2px solid rgb(19, 18, 18);
+  position: absolute;
+  bottom: 0;
+  overflow: scroll;
+  right: 0%;
+  background-color: #0a0a0a;
+  overflow-y: hidden;
+}
+#leg {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: large;
+  color: wheat;
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#con {
+  font-size: small;
+  color: rgb(243, 237, 237);
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
