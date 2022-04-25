@@ -64,9 +64,7 @@ promise
         });
 
         // Calculating maximum and minimum number of confirmed to apply suitable style
-        const maxConfirmed = calcMaxConfirmed(features);
-        const minConfirmed = calcMinConfirmed(features);
-
+        const [maxConfirmed, minConfirmed] = calcStats(features);
         const vectorLayer = new ol.layer.Vector({
           source: source,
           title: "covidLayer",
@@ -74,7 +72,7 @@ promise
             let percent = calcPercent(circle, minConfirmed, maxConfirmed);
             return new ol.style.Style({
               image: new ol.style.Circle({
-                radius: 10,
+                radius: 12,
                 fill: new ol.style.Fill({
                   color: `rgba(255,0,0, ${percent})`,
                 }),
@@ -119,7 +117,7 @@ promise
         const leftPanel = document.getElementById("leftPanel");
         fillLeftPanel(features, leftPanel);
 
-        //footer
+        // Footer
         counterAnimation(features);
 
         // Search bar
@@ -177,29 +175,21 @@ function centerMap(long, lat) {
   map
     .getView()
     .setCenter(ol.proj.transform([long, lat], "EPSG:4326", "EPSG:3857"));
-  map.getView().setZoom(5);
+  map.getView().setZoom(6);
 }
 
-function calcMaxConfirmed(features) {
+function calcStats(features) {
   let maxConfirmed = 0;
+  let minConfirmed = features[0].get("confirmedNumbers");
   for (let i = 0; i < features.length; i++) {
     let confirmedNumbers = features[i].get("confirmedNumbers");
     if (confirmedNumbers > maxConfirmed) {
       maxConfirmed = confirmedNumbers;
-    }
-  }
-  return maxConfirmed;
-}
-
-function calcMinConfirmed(features) {
-  let minConfirmed = features[0].get("confirmedNumbers");
-  for (let i = 0; i < features.length; i++) {
-    let confirmedNumbers = features[i].get("confirmedNumbers");
-    if (confirmedNumbers < minConfirmed) {
+    } else {
       minConfirmed = confirmedNumbers;
     }
   }
-  return minConfirmed;
+  return [maxConfirmed, minConfirmed];
 }
 
 function calcPercent(circle, minConfirmed, maxConfirmed) {
@@ -274,6 +264,7 @@ function fillLeftPanel(features, leftPanel) {
     element.className = "countries";
     image.className = "imgcountries";
     deathPer.className = "countryDeath";
+    recoveredPer.className = "countryRecovered";
     image.src = features[i].get("flag");
     element.innerHTML = features[i].get("countryName");
     deathPer.innerHTML = `Deaths: ${(
@@ -284,7 +275,7 @@ function fillLeftPanel(features, leftPanel) {
       (features[i].get("recoveredNumbers") /
         features[i].get("confirmedNumbers")) *
       100
-    ).toFixed(2)}`;
+    ).toFixed(2)} %`;
 
     leftPanel.appendChild(element);
     element.appendChild(image);
